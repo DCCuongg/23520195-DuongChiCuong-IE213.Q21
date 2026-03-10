@@ -11,6 +11,7 @@
 # 3. Cấu trúc Repository
 
 Repository được tổ chức theo nguyên tắc mỗi lab là một thư mục riêng biệt để giảng viên có thể theo dõi quá trình phát triển bài làm.
+```
 .
 ├── Lab01/
 ├── Lab02/
@@ -19,12 +20,12 @@ Repository được tổ chức theo nguyên tắc mỗi lab là một thư mụ
 ├── Lab05/
 ├── Lab06/
 └── README.md
-
+```
 # 4. Danh sách các Lab
 
 | Lab | Nội dung | Mô tả |
 |-----|---------|------|
-| Lab01 | ... | (để sau) |
+| Lab01 | Thiết lập môi trường. Thực hành viết lệnh với MongoDB. | Sử dụng MongoDB với các lệnh cơ bản |
 | Lab02 | ... | (để sau) |
 | Lab03 | ... | (để sau) |
 | Lab04 | ... | (để sau) |
@@ -40,7 +41,8 @@ Clone dự án về từ github, ở Lab 1 tất cả trình bày trong README.m
 ---
 
 # Lab01
-![Alt text](/Lab01/README.md)
+[Chi tiết Lab01](Lab01/README.md)
+
 EM gói riêng 1 file README.md ở LAB01 để sai có cập nhận README tổng vẩn còn minh chứng là không chỉnh sửa lab củ. Nội Dung ở bản tổng và bản riêng LAb hoàn toàn giống nhau.
 ## 1. Mục tiêu
 - Thiết lập môi trường.
@@ -115,6 +117,7 @@ use 23520195-IE213
 MongoDB sẽ trả về:
 
 switched to db 23520195-IE213
+
 Bước 3: Tạo collection để database xuất hiện
 
 Trong MongoDB, database chỉ xuất hiện khi có collection.
@@ -139,18 +142,20 @@ Bạn sẽ thấy database:
 
 23520195-IE213
 Kết quả mong muốn Database của bạn:
-
+```
 23520195-IE213
    └── test (collection)
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20142416.png)
 
 2.2 Thêm các document sau đây vào collection có tên là employees trong db vừa được tạo ở
 trên:
+```
 {"id":1,"name":{"first":"John","last":"Doe"},"age":48}
 {"id":2,"name":{"first":"Jane","last":"Doe"},"age":16}
 {"id":3,"name":{"first":"Alice","last":"A"},"age":32}
 {"id":4,"name":{"first":"Bob","last":"B"},"age":64}
-
+```
 Bước 1: Chọn database đã tạo
 
 Trong MONGOSH nhập:
@@ -160,16 +165,16 @@ use 23520195-IE213
 Bước 2: Thêm các document vào collection employees
 
 Dùng lệnh insertMany() để thêm nhiều document cùng lúc:
-
+```
 db.employees.insertMany([
   {"id":1,"name":{"first":"John","last":"Doe"},"age":48},
   {"id":2,"name":{"first":"Jane","last":"Doe"},"age":16},
   {"id":3,"name":{"first":"Alice","last":"A"},"age":32},
   {"id":4,"name":{"first":"Bob","last":"B"},"age":64}
 ])
-
+```
 Sau khi chạy thành công sẽ hiện dạng:
-
+```
 {
   acknowledged: true,
   insertedIds: {
@@ -179,7 +184,7 @@ Sau khi chạy thành công sẽ hiện dạng:
     '3': ObjectId('69afc872f5662d0fdf8e74cd')
   }
 }
-
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20143128.png)
 
 Bước 3: Kiểm tra dữ liệu đã thêm
@@ -189,14 +194,14 @@ Gõ lệnh:
 db.employees.find()
 
 Kết quả database
-
+```
 23520195-IE213
    └── employees
         ├── {id:1, name:{first:"John", last:"Doe"}, age:48}
         ├── {id:2, name:{first:"Jane", last:"Doe"}, age:16}
         ├── {id:3, name:{first:"Alice", last:"A"}, age:32}
         └── {id:4, name:{first:"Bob", last:"B"}, age:64}
-
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20143328.png)
 
 2.3 Hãy biến trường id trong các document trên trở thành duy nhất. Có nghĩa là không thể thêm
@@ -224,20 +229,20 @@ Gõ:
 db.employees.getIndexes()
 
 Bạn sẽ thấy:
-
+```
 [
   { key: { _id: 1 }, name: "_id_" },
   { key: { id: 1 }, name: "id_1", unique: true }
 ]
-
+```
 Bước 4: Thử thêm document trùng id
 
 Ví dụ thử thêm:
-
+```
 db.employees.insertOne(
   {"id":1,"name":{"first":"Test","last":"Test"},"age":20}
 )
-
+```
 MongoDB sẽ báo lỗi:
 
 E11000 duplicate key error
@@ -251,14 +256,14 @@ E11000 duplicate key error
 Lệnh tìm firstname = John và lastname = Doe
 
 Trong mongosh nhập:
-
+```
 db.employees.find({
   "name.first": "John",
   "name.last": "Doe"
 })
-
+```
 Kết quả mong đợi
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -268,7 +273,7 @@ Kết quả mong đợi
   },
   age: 48
 }
-
+```
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20144909.png)
 
@@ -281,13 +286,13 @@ $gt → greater than (lớn hơn)
 $lt → less than (nhỏ hơn)
 
 Lệnh trong mongosh
-
+```
 db.employees.find({
   age: { $gt: 30, $lt: 60 }
 })
-
+```
 Kết quả với dữ liệu của bạn
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -306,26 +311,28 @@ Kết quả với dữ liệu của bạn
   },
   age: 32
 }
-
+```
 Ảnh minh chứng: 
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20145333.png)
 
 2.6 Thêm các document sau đây vào collection:
+```
 {"id":5,"name":{"first":"Rooney", "middle":"K", "last":"A"},"age":30}
 {"id":6,"name":{"first":"Ronaldo", "middle":"T", "last":"B"},"age":60}
+```
 Sau đó viết lệnh để tìm tất cả các document có middle name.
 
 Bước 1: Thêm 2 document vào collection employees
 
 Trong mongosh chạy:
-
+```
 db.employees.insertMany([
   {"id":5,"name":{"first":"Rooney","middle":"K","last":"A"},"age":30},
   {"id":6,"name":{"first":"Ronaldo","middle":"T","last":"B"},"age":60}
 ])
-
+```
 MongoDB sẽ thêm 2 document mới vào collection employees.
-
+```
 {
   acknowledged: true,
   insertedIds: {
@@ -333,17 +340,17 @@ MongoDB sẽ thêm 2 document mới vào collection employees.
     '1': ObjectId('69afce70f5662d0fdf8e74d0')
   }
 }
-
+```
 Bước 2: Tìm tất cả document có middle name
 
 Vì middle nằm trong object name, ta dùng dot notation và toán tử $exists.
-
+```
 db.employees.find({
   "name.middle": { $exists: true }
 })
-
+```
 Kết quả mong đợi
-
+```
 {
   _id: ObjectId('69afce70f5662d0fdf8e74cf'),
   id: 5,
@@ -364,7 +371,7 @@ Kết quả mong đợi
   },
   age: 60
 }
-
+```
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20145838.png)
 
@@ -380,14 +387,14 @@ $unset dùng để xoá một field khỏi document.
 Lệnh xoá middle name
 
 Trong mongosh chạy:
-
+```
 db.employees.updateMany(
   { "name.middle": { $exists: true } },
   { $unset: { "name.middle": "" } }
 )
-
+```
 KẾT quả 
-
+```
 {
   acknowledged: true,
   insertedId: null,
@@ -395,13 +402,13 @@ KẾT quả
   modifiedCount: 2,
   upsertedCount: 0
 }
-
+```
 Kiểm tra kết quả
 
 db.employees.find()
 
 Kết quả:
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -456,7 +463,7 @@ Kết quả:
   },
   age: 60
 }
-
+```
 Ảnh minh chứng:
 
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20150705.png)
@@ -470,12 +477,16 @@ $set
 
 Lệnh trong mongosh
 
+```
 db.employees.updateMany(
   {},
   { $set: { organization: "UIT" } }
 )
+```
 
 kết quả:
+
+
 
 {
   acknowledged: true,
@@ -484,6 +495,7 @@ kết quả:
   modifiedCount: 6,
   upsertedCount: 0
 }
+
 
 Kiểm tra kết quả
 db.employees.find()
@@ -497,14 +509,14 @@ kết quả:
 Ta dùng $set để cập nhật và $in để chọn nhiều giá trị id.
 
 Lệnh trong mongosh
-
+```
 db.employees.updateMany(
   { id: { $in: [5, 6] } },
   { $set: { organization: "USSH" } }
 )
-
+```
 Kết quả:
-
+```
 {
   acknowledged: true,
   insertedId: null,
@@ -512,7 +524,7 @@ Kết quả:
   modifiedCount: 2,
   upsertedCount: 0
 }
-
+```
 Kiểm tra kết quả
 
 db.employees.find()
@@ -529,7 +541,7 @@ UIT và USSH.
 Trong MongoDB phải dùng Aggregation Pipeline.
 
 Lệnh trong mongosh
-
+```
 db.employees.aggregate([
   {
     $match: { organization: { $in: ["UIT", "USSH"] } }
@@ -542,7 +554,7 @@ db.employees.aggregate([
     }
   }
 ])
-
+```
 Giải thích
 $match
 { organization: { $in: ["UIT", "USSH"] } }
@@ -550,13 +562,13 @@ $match
 Chỉ lấy nhân viên thuộc:UIT,USSH
 
 $group
-
+```
 {
   _id: null,
   totalAge: { $sum: "$age" },
   averageAge: { $avg: "$age" }
 }
-
+```
 $sum → tính tổng tuổi
 
 $avg → tính tuổi trung bình
@@ -565,16 +577,18 @@ _id: null → gộp tất cả thành một nhóm
 
 Kết quả
 
+```
 {
   _id: null,
   totalAge: 250,
   averageAge: 41.666666666666664
 }
+```
 
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20151825.png)
 
-## 4. Kết quả đầu ra
+## 4. Kết quả đầu ra (ở trên có rồi chỉ tổng hợp lại)
 
 Bài 1: Thiết lập môi trường.
 1.1 Đăng ký tài khoản MongoDB Atlas và tạo cluster miễn phí trên dịch vụ đám mây.
@@ -609,21 +623,23 @@ Mở MongoDB Compass.
 
 
 Kết quả mong muốn Database của bạn:
-
+```
 23520195-IE213
    └── test (collection)
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20142416.png)
 
 2.2 Thêm các document sau đây vào collection có tên là employees trong db vừa được tạo ở
 trên:
+```
 {"id":1,"name":{"first":"John","last":"Doe"},"age":48}
 {"id":2,"name":{"first":"Jane","last":"Doe"},"age":16}
 {"id":3,"name":{"first":"Alice","last":"A"},"age":32}
 {"id":4,"name":{"first":"Bob","last":"B"},"age":64}
-
+```
 
 Sau khi chạy thành công sẽ hiện dạng:
-
+```
 {
   acknowledged: true,
   insertedIds: {
@@ -633,20 +649,20 @@ Sau khi chạy thành công sẽ hiện dạng:
     '3': ObjectId('69afc872f5662d0fdf8e74cd')
   }
 }
-
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20143128.png)
 
 Bước 3: Kiểm tra dữ liệu đã thêm
 
 Kết quả database
-
+```
 23520195-IE213
    └── employees
         ├── {id:1, name:{first:"John", last:"Doe"}, age:48}
         ├── {id:2, name:{first:"Jane", last:"Doe"}, age:16}
         ├── {id:3, name:{first:"Alice", last:"A"}, age:32}
         └── {id:4, name:{first:"Bob", last:"B"}, age:64}
-
+```
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20143328.png)
 
 2.3 Hãy biến trường id trong các document trên trở thành duy nhất. Có nghĩa là không thể thêm
@@ -664,7 +680,7 @@ E11000 duplicate key error
 
 
 Kết quả 
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -674,14 +690,14 @@ Kết quả
   },
   age: 48
 }
-
+```
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20144909.png)
 
 2.5 Hãy viết lệnh để tìm những người có tuổi trên 30 và dưới 60.
 
 Kết quả với dữ liệu của bạn
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -700,18 +716,19 @@ Kết quả với dữ liệu của bạn
   },
   age: 32
 }
-
+```
 Ảnh minh chứng: 
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20145333.png)
 
 2.6 Thêm các document sau đây vào collection:
+```
 {"id":5,"name":{"first":"Rooney", "middle":"K", "last":"A"},"age":30}
 {"id":6,"name":{"first":"Ronaldo", "middle":"T", "last":"B"},"age":60}
 Sau đó viết lệnh để tìm tất cả các document có middle name.
-
+```
 
 Kết quả
-
+```
 {
   _id: ObjectId('69afce70f5662d0fdf8e74cf'),
   id: 5,
@@ -732,7 +749,7 @@ Kết quả
   },
   age: 60
 }
-
+```
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20145838.png)
 
@@ -740,7 +757,7 @@ Kết quả
 name ra khỏi các document đó.
 
 KẾT quả 
-
+```
 {
   acknowledged: true,
   insertedId: null,
@@ -748,13 +765,14 @@ KẾT quả
   modifiedCount: 2,
   upsertedCount: 0
 }
+```
 
 Kiểm tra kết quả
 
 db.employees.find()
 
 Kết quả:
-
+```
 {
   _id: ObjectId('69afc872f5662d0fdf8e74ca'),
   id: 1,
@@ -809,7 +827,7 @@ Kết quả:
   },
   age: 60
 }
-
+```
 Ảnh minh chứng:
 
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20150705.png)
@@ -818,7 +836,7 @@ Kết quả:
 collection.
 
 kết quả:
-
+```
 {
   acknowledged: true,
   insertedId: null,
@@ -826,7 +844,7 @@ kết quả:
   modifiedCount: 6,
   upsertedCount: 0
 }
-
+```
 Kiểm tra kết quả
 db.employees.find()
 
@@ -837,7 +855,7 @@ kết quả:
 2.9 Hãy điều chỉnh organization của nhân viên có id là 5 và 6 thành "USSH".
 
 Kết quả:
-
+```
 {
   acknowledged: true,
   insertedId: null,
@@ -845,7 +863,7 @@ Kết quả:
   modifiedCount: 2,
   upsertedCount: 0
 }
-
+```
 Kiểm tra kết quả
 
 db.employees.find()
@@ -861,13 +879,13 @@ UIT và USSH.
 
 
 Kết quả
-
+```
 {
   _id: null,
   totalAge: 250,
   averageAge: 41.666666666666664
 }
-
+```
 Ảnh minh chứng:
 ![Alt text](/Lab01/images/Screenshot%202026-03-10%20151825.png)
 
