@@ -1986,7 +1986,7 @@ http://localhost:3000/api/v1/movies/ratings
 ```
 http://localhost:3000/api/v1/movies/review?id={movieId}
 ```
-![movies](./images/movie-detail-reviews.png)
+![movies](./Lab03/images/movie-detail-reviews.png)
 
 ---
 
@@ -2006,8 +2006,8 @@ http://localhost:3000/api/v1/movies/review
   "user_id": "MSSV"
 }
 ```
-![add-review](./images/add-review.png)
-![add-review](./images/movie-detail-reviews2.png)
+![add-review](./Lab03/images/add-review.png)
+![add-review](./Lab03/images/movie-detail-reviews2.png)
 ---
 
 #### 6. Cập nhật review
@@ -2025,8 +2025,8 @@ http://localhost:3000/api/v1/movies/review
   "text": "Sửa lại nội dung"
 }
 ```
-![add-review](./images/update-review.png)
-![add-review](./images/update-review2.png)
+![add-review](./Lab03/images/update-review.png)
+![add-review](./Lab03/images/update-review2.png)
 ---
 
 #### 7. Xoá review
@@ -2043,29 +2043,29 @@ http://localhost:3000/api/v1/movies/review
   "user_id": "MSSV"
 }
 ```
-![add-review](./images/delete-review.png)
-![add-review](./images/delete-review2.png)
+![add-review](./Lab03/images/delete-review.png)
+![add-review](./Lab03/images/delete-review2.png)
 ---
 
 ### Chỗ chèn ảnh kết quả
 
 #### GET movies
-![movies](./images/movies.png)
+![movies](./Lab03/images/movies.png)
 
 #### GET movie by id
-![movie-detail](./images/movie-detail.png)
+![movie-detail](./Lab03/images/movie-detail.png)
 
 #### GET ratings
-![ratings](./images/ratings.png)
+![ratings](./Lab03/images/ratings.png)
 
 #### POST review
-![add-review](./images/add-review.png)
+![add-review](./Lab03/images/add-review.png)
 
 #### PUT review
-![update-review](./images/update-review.png)
+![update-review](./Lab03/images/update-review.png)
 
 #### DELETE review
-![delete-review](./images/delete-review.png)
+![delete-review](./Lab03/images/delete-review.png)
 
 ## 5. Giải thích chính
 1. Client (Postman / trình duyệt) gửi request tới API  
@@ -2837,10 +2837,10 @@ Hàm login() sau khi lưu thông tin người dùng vào state global của App.
 Chính sách là giả lặp đăng nhập bằng cách lưu id ở local mở quyền xóa chỉnh sửa cho người dùng bằng cách so sánh id:
 
 Khi đăng nhập
-![](./images/Screenshot%202026-05-19%20221648.png)
+![](./Lab06/images/Screenshot%202026-05-19%20221648.png)
 Đăng nhập thành công.
-![](./images/1.png)
-![](./images/4.png)
+![](./Lab06/images/1.png)
+![](./Lab06/images/4.png)
 1.2 Thêm review
 Tạo các biến như hướng dẫn sau:
 - Biến editing sẽ có giá trị true khi component đang ở chế độ Editing.
@@ -2876,11 +2876,11 @@ Cấu hình trong AddReview.js:
 - Nếu submitted là true, giao diện sẽ ẩn form và hiển thị nút quay lại trang thông tin phim.
 
 Lúc vào chỉnh sửa.
-![](./images/5.png)
+![](./Lab06/images/5.png)
 Lúc chỉnh sửa thành công.
-![](./images/6.png)
+![](./Lab06/images/6.png)
 Kết quả.
-![](./images/7.png)
+![](./Lab06/images/7.png)
 1.3 Sửa review
 Viết mã nguồn thực hiện các việc sau:
 - Đầu tiên, kiểm tra trạng thái truyền vào cho AddReview (xem lại tệp tin movie.js sẽ thấy prop
@@ -2900,7 +2900,7 @@ Nút "Edit" tại component Movie truyền dữ liệu của review hiện tại
 Component AddReview sử dụng hook useLocation() để bắt dữ liệu này. Nếu tồn tại location.state.currentReview, chế độ editing được bật thành true và initialReviewState được gán bằng nội dung cũ.
 
 Tại hàm saveReview(), nếu editing === true, thay vì tạo mới, hệ thống gọi MovieDataService.updateReview() và đính kèm review_id để cập nhật dữ liệu trên database.
-![](./images/11.png)
+![](./Lab06/images/11.png)
 
 Bài 2: Xoá review
 Thêm mã nguồn vào movie.js để xử lý phần xoá review:
@@ -2925,9 +2925,9 @@ Cấu hình trong Movie.js:
 
 - Cập nhật UI bất biến (Immutable State): Thay vì dùng splice() có thể gây đột biến state trực tiếp, mã nguồn đã áp dụng phương pháp tối ưu hơn của React là dùng .filter() để tạo ra mảng review mới loại bỏ ID vừa xóa, sau đó gán lại thông qua setMovie(). Giao diện sẽ tự động load lại danh sách review mà không cần f5.
 Lúc chưa xóa "ok hay lắm".
-![](./images/12.png)
+![](./Lab06/images/12.png)
 Lúc xóa "ok hay lắm" rồi.
-![](./images/13.png)
+![](./Lab06/images/13.png)
 Bài 3: Lấy dữ liệu cho trang tiếp theo
 3.1 getAll()
 Trong component movies-list.js thêm mã nguồn để thực hiện yêu cầu.
@@ -2953,8 +2953,8 @@ Cấu hình trong MoviesList.js:
 
 - Giao diện thêm 2 nút "Previous" và "Next" để thay đổi giá trị của currentPage. Nút "Previous" được vô hiệu hóa khi ở trang 0.
 
-![](./images/2.png)
-![](./images/3.png)
+![](./Lab06/images/2.png)
+![](./Lab06/images/3.png)
 3.2 find()
 Trong movies-list.js ta điều chỉnh mã nguồn theo các yêu cầu sau:
 - Đầu tiên, tạo biến trạng thái currentSearchMode để nhận 2 giá trị “findByTitle” hoặc
@@ -2971,43 +2971,43 @@ thức điều khiển:
 - findByTitle();
 - findByRating();
 --- 
-![](./images/1.png)
-![](./images/9.png)
-![](./images/10.png)
+![](./Lab06/images/1.png)
+![](./Lab06/images/9.png)
+![](./Lab06/images/10.png)
 ---
 ## 4. Kết quả đầu ra
 
 Khi đăng nhập
-![](./images/Screenshot%202026-05-19%20221648.png)
+![](./Lab06/images/Screenshot%202026-05-19%20221648.png)
 Đăng nhập thành công.
-![](./images/1.png)
+![](./Lab06/images/1.png)
 Trang chi tiết 1 bộ.
-![](./images/4.png)
+![](./Lab06/images/4.png)
 
 
 Lúc vào tạo review.
-![](./images/5.png)
+![](./Lab06/images/5.png)
 Lúc chỉnh sửa thành công.
-![](./images/6.png)
+![](./Lab06/images/6.png)
 Kết quả.
-![](./images/7.png)
+![](./Lab06/images/7.png)
 Lúc chỉnh sửa thay vì tạo mới.
-![](./images/11.png)
+![](./Lab06/images/11.png)
 
 Lúc chưa xóa "ok hay lắm".
-![](./images/12.png)
+![](./Lab06/images/12.png)
 Lúc xóa "ok hay lắm" rồi.
-![](./images/13.png)
+![](./Lab06/images/13.png)
 
 Xem phân trang và chuyển trang ở cuối.
-![](./images/2.png)
+![](./Lab06/images/2.png)
 Sang trang 1.
-![](./images/3.png)
+![](./Lab06/images/3.png)
 Lúc lọc bằng filter.
-![](./images/1.png)
-![](./images/9.png)
+![](./Lab06/images/1.png)
+![](./Lab06/images/9.png)
 Vừa lọc vừa chuyển trang.
-![](./images/10.png)
+![](./Lab06/images/10.png)
 ---
 ## 5. Giải thích chính
 
