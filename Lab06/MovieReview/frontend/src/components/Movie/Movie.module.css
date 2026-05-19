@@ -1,0 +1,71 @@
+/* src/components/Movie/Movie.module.css */
+
+.movieInfoCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.movieInfoHeader {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 16px;
+}
+
+.movieInfoTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.movieInfoBody {
+  padding: 16px;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* --- CÁC CLASS MỚI CHO PHẦN REVIEWS --- */
+
+.posterImage {
+  width: 70%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  /* border-radius: 8px; */
+  background-color: #f0f0f0;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* Khung viền đen bao quanh toàn bộ phần Reviews */
+.reviewsContainer {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.reviewsTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.reviewItem {
+  margin-bottom: 15px;
+}
+
+.reviewHeader {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.reviewText {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+}
